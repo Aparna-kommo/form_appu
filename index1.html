@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            border: 1px solid black;
+            width: 30%;
+            height: 100vh;
+            padding: 10px;
+        }
+        #btn{
+            background: green;
+            margin-left: 140px;
+        }
+        .span1{
+            font-size: 8px;
+            margin-left: 1px;
+        }
+        .Sumbit{
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #formDataDisplay {
+            border: 1px solid black;
+            margin-top: 20px;
+            padding: 10px;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Assignment Form</h1>
+    <form id="taskForm">
+        <label for="name">Employee Name:</label><br>
+        <input type="text" name="firstName" id="FirstName" placeholder="First Name"> 
+        <input type="text" name="lastName" id="LastName" placeholder="Last Name"><br><br>
+        
+        <label for="name">Manager Name:</label><br>
+        <input type="text" name="managerFirstName" id="Manager" placeholder="First Name"> 
+        <input type="text" name="managerLastName" id="ManagerName" placeholder="Last Name"><br><br>
+        
+        <label for="name">Task:</label><br>
+        <input type="text" name="task" id="task"> 
+        <input type="text" name="taskNumber" id="task1" placeholder="ex:3"><br><br>
+        
+        <label>Status</label><br><br>
+        <input type="radio" name="status" value="Not Started">Not Started<br>
+        <input type="radio" name="status" value="In Progress">In Progress<br>
+        <input type="radio" name="status" value="Done">Done<br>
+        <input type="radio" name="status" value="Awaiting Feedback">Awaiting Feedback<br><br>
+        
+        <label>Additional Notes:</label><br><br>
+        <textarea placeholder="Type here....." id="additionalNotes" style="height: 70px; width: 340px;"></textarea> <br><br>
+        
+        <label>Instructions</label><br><br>
+        <textarea id="instructions" style="height: 50px; width: 340px;"></textarea> <br><br>
+    <button type="button" id="btn">Submit</button>
+    </form>
+
+    <div id="formDataDisplay"></div>
+
+    <script>
+        document.getElementById('btn').addEventListener('click', function(event) {
+            event.preventDefault();
+
+            var formData = {
+                firstName: document.getElementById('FirstName').value,
+                lastName: document.getElementById('LastName').value,
+                managerFirstName: document.getElementById('Manager').value,
+                managerLastName: document.getElementById('ManagerName').value,
+                task: document.getElementById('task').value,
+                taskNumber: document.getElementById('task1').value,
+                status: document.querySelector('input[name="status"]:checked').value,
+                additionalNotes: document.getElementById('additionalNotes').value,
+                instructions: document.getElementById('instructions').value
+            };
+
+            var formDataDisplay = document.getElementById('formDataDisplay');
+            formDataDisplay.innerHTML = "<h2>Form Data:</h2>";
+            for (var key in formData) {
+                if (formData.hasOwnProperty(key)) {
+                    formDataDisplay.innerHTML += "<p><strong>" + key + ":</strong> " + formData[key] + "</p>";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
